@@ -37,7 +37,6 @@ public class DBConnectionUtil {
 	 * @throws SQLException 
 	 */
 	public static void main(String[] args) throws SQLException {
-		// TODO Auto-generated method stub
 		if ((args == null) || (args.length < 4)) {
 			System.out.println("Usage: java -jar DBConnectionUtil dburl username password query");
 			return;
@@ -62,6 +61,10 @@ public class DBConnectionUtil {
 		Statement st = null;
 		ResultSet rs = null;
 
+		if (url == null || userName == null || password == null || query == null) {
+			throw new IllegalArgumentException("Some of the arguments are null. Please check.");
+		}
+		
 		try {
 			String appendSSLinputURL = url + "?autoReconnect=true&useSSL=false";
 			conn = DriverManager.getConnection(appendSSLinputURL, userName, password);
